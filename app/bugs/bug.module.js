@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Modules:
 var core_1 = require("@angular/core");
 var shared_module_1 = require('../shared/shared.module');
+// once created, import the bugroutingmodule for use in NgModule:
+var bug_routing_module_1 = require('./bug-routing.module');
 //  Component:
 var bug_list_component_1 = require('./bug-list/bug-list.component');
 // use CommonModule when you need access to NgIf/NgFor:
@@ -24,7 +26,8 @@ var BugModule = (function () {
         core_1.NgModule({
             // imports that we want NgModule to have access to:
             imports: [
-                shared_module_1.SharedModule
+                shared_module_1.SharedModule,
+                bug_routing_module_1.BugRoutingModule
             ],
             declarations: [
                 bug_list_component_1.BugListComponent

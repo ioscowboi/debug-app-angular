@@ -1,7 +1,8 @@
 // Modules:
 import { NgModule  } from "@angular/core";
 import { SharedModule } from '../shared/shared.module';
-
+// once created, import the bugroutingmodule for use in NgModule:
+import { BugRoutingModule } from './bug-routing.module';
 //  Component:
 import { BugListComponent } from './bug-list/bug-list.component';
 
@@ -13,7 +14,8 @@ import { BugListComponent } from './bug-list/bug-list.component';
 @NgModule({
     // imports that we want NgModule to have access to:
     imports: [ 
-        SharedModule
+        SharedModule,
+        BugRoutingModule
      ],
     declarations: [
         BugListComponent

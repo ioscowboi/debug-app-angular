@@ -12,7 +12,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // imports: 
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var bug_list_component_1 = require('./bugs/bug-list/bug-list.component');
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
@@ -22,7 +21,8 @@ var AppRoutingModule = (function () {
             imports: [
                 router_1.RouterModule.forRoot([
                     // base (root "/") route path:
-                    { path: "", component: bug_list_component_1.BugListComponent }
+                    //  this says: when you hit the core root of the site, redirect to this one:
+                    { path: '', redirectTo: 'bugs', pathMatch: 'full' },
                 ])
             ],
             exports: [router_1.RouterModule]

@@ -3,14 +3,16 @@
 // imports: 
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BugListComponent } from './bugs/bug-list/bug-list.component';
+
 
 @NgModule({
     // define all paths for routing:
     imports: [ 
         RouterModule.forRoot([ 
             // base (root "/") route path:
-            { path: "", component: BugListComponent }
+            //  this says: when you hit the core root of the site, redirect to this one:
+            { path: '', redirectTo: 'bugs', pathMatch: 'full' },
+
         ])
     ],
     exports: [RouterModule]
