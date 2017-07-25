@@ -8,27 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Module
-var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var bug_module_1 = require('./bugs/bug.module');
-// Component Imports
-var app_component_1 = require('./app.component');
-var AppModule = (function () {
-    function AppModule() {
+var core_1 = require("@angular/core");
+// use CommonModule when you need access to NgIf/NgFor:
+// however we will import it a different way so it remains commented out:
+// import { CommonModule } from '@angular/common';
+// decorator:
+var BugModule = (function () {
+    function BugModule() {
     }
-    AppModule = __decorate([
+    BugModule = __decorate([
         core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule,
-                bug_module_1.BugModule
-            ],
-            declarations: [app_component_1.AppComponent],
-            bootstrap: [app_component_1.AppComponent]
+            // imports that we want NgModule to have access to:
+            imports: [],
+            declarations: [],
+            // passthrough: allows you to pull in other modules to external modules:
+            exports: [],
+            providers: []
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], BugModule);
+    return BugModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.BugModule = BugModule;
+//# sourceMappingURL=bug.module.js.map
