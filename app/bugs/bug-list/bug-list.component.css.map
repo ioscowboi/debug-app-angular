@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAEA,EAAE;EACE,aAAa,EAAE,IAAI;;AAGnB,QAAE;EACE,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,iBAAe;;AAGtC,MAAM;EACF,WAAW,EAAE,OAAO;;AAExB,EAAE;EACE,aAAa,EAAE,iCAA4B;;AAE/C,CAAC;EACG,aAAa,EAAE,KAAK",
+"sources": ["bug-list.component.scss"],
 "names": [],
 "file": "bug-list.component.css"
 }
