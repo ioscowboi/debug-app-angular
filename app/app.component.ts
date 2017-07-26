@@ -5,7 +5,9 @@ import { Component } from '@angular/core';
     // what should the app display and where should it get it from
     template: `
         <navbar></navbar>
-        <router-outlet></router-outlet>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
     `
 })
 export class AppComponent { }

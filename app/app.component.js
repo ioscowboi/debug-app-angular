@@ -16,7 +16,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             // what should the app display and where should it get it from
-            template: "\n        <navbar></navbar>\n        <router-outlet></router-outlet>\n    "
+            template: "\n        <navbar></navbar>\n        <div class=\"container\">\n            <router-outlet></router-outlet>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
