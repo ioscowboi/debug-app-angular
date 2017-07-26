@@ -21,8 +21,13 @@ var BugRoutingModule = (function () {
                 // Feature modules use the .forChild method
                 // note: there should usually only be one instance of .forRoot (which is in the app-routing.module.ts):
                 router_1.RouterModule.forChild([
+                    // set up redirect to give context to the content we're displaying: 
+                    { path: '', redirectTo: 'bugs', pathMatch: 'prefix' },
                     // don't put any leading slashes in the routing path:
-                    { path: 'bugs', component: bug_list_component_1.BugListComponent }
+                    { path: 'bugs', component: bug_list_component_1.BugListComponent },
+                    // if there's no match on the root (put this last):
+                    //     ** = wildcard
+                    { path: '**', redirectTo: 'bugs' }
                 ])
             ],
             exports: []

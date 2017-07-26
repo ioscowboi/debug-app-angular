@@ -1,0 +1,14 @@
+$white: #fff;
+$gray: #34434B;
+nav{
+    padding: 2rem;
+    background-color: $gray;
+    border-radius: 0;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.24);
+}
+#nav-dropdown{ 
+    color: $white; 
+}
+.dropdown-menu{
+  border-radius: 0;
+}

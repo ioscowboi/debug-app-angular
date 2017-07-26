@@ -15,6 +15,7 @@ var bug_module_1 = require('./bugs/bug.module');
 var app_routing_module_1 = require('./app-routing.module');
 // Component Imports
 var app_component_1 = require('./app.component');
+var navbar_component_1 = require('./navbar/navbar.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +26,10 @@ var AppModule = (function () {
                 bug_module_1.BugModule,
                 app_routing_module_1.AppRoutingModule
             ],
-            declarations: [app_component_1.AppComponent],
+            declarations: [
+                app_component_1.AppComponent,
+                navbar_component_1.NavbarComponent
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
