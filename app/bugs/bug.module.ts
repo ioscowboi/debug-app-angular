@@ -22,7 +22,7 @@ import { BugListComponent } from './bug-list/bug-list.component';
     ],
     // passthrough: allows you to pull in other modules to external modules:
     exports: [ ],
-    
+    // services:
     providers: [ ]
 })
 export class BugModule { }

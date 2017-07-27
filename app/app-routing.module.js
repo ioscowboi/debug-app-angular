@@ -19,6 +19,7 @@ var AppRoutingModule = (function () {
         core_1.NgModule({
             // define all paths for routing:
             imports: [
+                // .forRoot allows you to define all paths:
                 router_1.RouterModule.forRoot([
                     // base (root "/") route path:
                     //  this says: when you hit the core root of the site, redirect to this one:

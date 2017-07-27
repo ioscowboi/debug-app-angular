@@ -34,6 +34,7 @@ var BugModule = (function () {
             ],
             // passthrough: allows you to pull in other modules to external modules:
             exports: [],
+            // services:
             providers: []
         }), 
         __metadata('design:paramtypes', [])

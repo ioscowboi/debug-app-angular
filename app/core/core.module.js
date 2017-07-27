@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 // ModuleWithProviders is used with singleton instances
 // Skipself checks for other instances of a module in the heirarchy
 var core_1 = require('@angular/core');
+// decorator
 var CoreModule = (function () {
     // initialize this for detection purposes:
     // parentModule is the 

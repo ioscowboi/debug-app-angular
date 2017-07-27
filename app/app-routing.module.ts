@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     // define all paths for routing:
     imports: [ 
+        // .forRoot allows you to define all paths:
         RouterModule.forRoot([ 
             // base (root "/") route path:
             //  this says: when you hit the core root of the site, redirect to this one:

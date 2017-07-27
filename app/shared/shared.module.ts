@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
     declarations: [ ],
     // using modules, components etc available to other modules:
     exports: [ CommonModule ]
+    // no need for providers because you can run into duplicate services issues
 })
 
 // always use the name "SharedModule" in the shared.module.ts

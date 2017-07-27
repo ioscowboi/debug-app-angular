@@ -2,6 +2,7 @@
 // Skipself checks for other instances of a module in the heirarchy
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 
+// decorator
 @NgModule({
     imports: [ ],
     declarations: [ ],
