@@ -16,7 +16,7 @@
 
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
-            'firebase': 'npm:firebase;'
+            'firebase': 'npm:firebase'
         },
         
         packages: {
