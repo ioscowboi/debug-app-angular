@@ -2,6 +2,9 @@
 // Skipself checks for other instances of a module in the heirarchy
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 
+// Service Imports:
+import { FirebaseConfigService } from './service/firebase-config.service';
+
 // decorator
 @NgModule({
     imports: [ ],
@@ -22,10 +25,11 @@ export class CoreModule {
     }
     // create singleton instances method:
     //     this creates a providers array that will be auto configured:
+    //     pass in any singletons as providers:
     static forRoot(): ModuleWithProviders {
         return{
             ngModule: CoreModule,
-            providers: [ ]
+            providers: [ FirebaseConfigService ]
         };
     }
 }

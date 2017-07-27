@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 // ModuleWithProviders is used with singleton instances
 // Skipself checks for other instances of a module in the heirarchy
 var core_1 = require('@angular/core');
+// Service Imports:
+var firebase_config_service_1 = require('./service/firebase-config.service');
 // decorator
 var CoreModule = (function () {
     // initialize this for detection purposes:
@@ -26,10 +28,11 @@ var CoreModule = (function () {
     }
     // create singleton instances method:
     //     this creates a providers array that will be auto configured:
+    //     pass in any singletons as providers:
     CoreModule.forRoot = function () {
         return {
             ngModule: CoreModule,
-            providers: []
+            providers: [firebase_config_service_1.FirebaseConfigService]
         };
     };
     CoreModule = __decorate([
