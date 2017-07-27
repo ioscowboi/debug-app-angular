@@ -10,13 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Set up service:
 var core_1 = require('@angular/core');
+// use firebase sdk from firebase module:
+var firebase = require('firebase');
+// pull in the constants you'll need:
+var constants_1 = require('../constant/constants');
 var FirebaseConfigService = (function () {
     function FirebaseConfigService() {
         this.configureApp();
     }
     FirebaseConfigService.prototype.configureApp = function () {
         // initialize firebase config:
-        // const app = firebase.initializeApp(FIREBASE_CONFIG);
+        var app = firebase.initializeApp(constants_1.FIREBASE_CONFIG);
+        console.log(app);
     };
     FirebaseConfigService = __decorate([
         core_1.Injectable(), 

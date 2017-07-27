@@ -7,12 +7,13 @@ import { FIREBASE_CONFIG } from '../constant/constants';
 
 @Injectable()
 
-export class FirebaseConfigService{
-    constructor(){
+export class FirebaseConfigService {
+    constructor() {
         this.configureApp();
     }
-    configureApp(){
+    configureApp() {
         // initialize firebase config:
-        // const app = firebase.initializeApp(FIREBASE_CONFIG);
+        const app = firebase.initializeApp(FIREBASE_CONFIG);
+        console.log(app);
     }
 }
