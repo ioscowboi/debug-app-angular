@@ -3,7 +3,9 @@
         <h1>Logged Bugs</h1>
     </div>
     <div class="col-xs-6 text-xs-right">
-        <button class="btn btn-success btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>Add Bug</button>
+        <!-- get access to all properties and methods using attr.xxxxxxx -->
+        <!--        attribute binding: -->
+        <button class="btn btn-success btn-lg" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i>Add Bug</button>
     </div>
 </div>
 <div class="row">
@@ -21,7 +23,9 @@
             </thead>
             <tbody>
                 <!--create a row for each bug:  -->
-                <tr *ngFor="let bug of bugs">
+                <!-- get access to all properties and methods using attr.xxxxxxx -->
+                <!--        attribute binding: -->
+                <tr *ngFor="let bug of bugs" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal">
                     <td>{{ bug.title }}</td>
                     <td>{{ bug.status }}</td>
                     <td>{{ bug.severity }}</td>
@@ -33,3 +37,6 @@
         </table>
     </div>
 </div>
+<!--display the modal window here  -->
+<!-- "#" denotes a template reference variable (similar to 'bug' in 'ngFor="let bug of bugs"'')  -->
+<bug-detail #bugDetail></bug-detail>
