@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { forbiddenStringValidator } from '../../shared/validation/forbidden-string.validator';
 
 @Component({
     moduleId: module.id,
@@ -24,7 +25,9 @@ export class BugDetailComponent implements OnInit{
         // gives more control over form fields:
         this.bugForm = new FormGroup({
             // arguments[1] are form validation :
-            title: new FormControl(null, Validators.required),
+            //     use '[]' for multiple validation arguments:
+            //     regular expressions go in between '/ /'
+            title: new FormControl(null, [Validators.required, forbiddenStringValidator(/puppy/i)]),
             status: new FormControl(1, Validators.required),
             severity: new FormControl(1, Validators.required),
             description: new FormControl(null, Validators.required)

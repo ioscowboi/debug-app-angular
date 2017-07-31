@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
+var forbidden_string_validator_1 = require('../../shared/validation/forbidden-string.validator');
 var BugDetailComponent = (function () {
     function BugDetailComponent() {
         // create property for html component to use
@@ -24,7 +25,9 @@ var BugDetailComponent = (function () {
         // gives more control over form fields:
         this.bugForm = new forms_1.FormGroup({
             // arguments[1] are form validation :
-            title: new forms_1.FormControl(null, forms_1.Validators.required),
+            //     use '[]' for multiple validation arguments:
+            //     regular expressions go in between '/ /'
+            title: new forms_1.FormControl(null, [forms_1.Validators.required, forbidden_string_validator_1.forbiddenStringValidator(/puppy/i)]),
             status: new forms_1.FormControl(1, forms_1.Validators.required),
             severity: new forms_1.FormControl(1, forms_1.Validators.required),
             description: new forms_1.FormControl(null, forms_1.Validators.required)
