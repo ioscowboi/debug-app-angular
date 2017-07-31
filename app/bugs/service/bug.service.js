@@ -27,9 +27,13 @@ var BugService = (function () {
             //     use 'on()' to continuously listen to an event:
             //         also note on() will fire for every one of the specified objects (in this case child_added)
             _this.bugsDbRef.on('child_added', function (bug) {
+                // store the js object
+                // use as to cast this as our js object
+                var newBug = bug.val();
                 // observe:
                 // obs is created here, this extracts the values and converts into a javascript object:
-                obs.next(bug.val());
+                //     every time this fires, a newBug bug object will be passed in:
+                obs.next(newBug);
             }, 
             // let the observable throw the error:
             function (err) {

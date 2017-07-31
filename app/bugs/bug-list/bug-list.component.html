@@ -20,13 +20,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Some Bug</td>
-                    <td>Logged</td>
-                    <td>Severe</td>
-                    <td>This bug happened</td>
-                    <td>Me</td>
-                    <td>12th July 2020</td>
+                <!--create a row for each bug:  -->
+                <tr *ngFor="let bug of bugs">
+                    <td>{{ bug.title }}</td>
+                    <td>{{ bug.status }}</td>
+                    <td>{{ bug.severity }}</td>
+                    <td>{{ bug.description }}</td>
+                    <td>{{ bug.createdBy }}</td>
+                    <td>{{ bug.createdDate }}</td>
                 </tr>
             </tbody>
         </table>

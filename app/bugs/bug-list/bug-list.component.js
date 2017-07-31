@@ -15,15 +15,21 @@ var BugListComponent = (function () {
     //     we use OnInit instead of putting code in the constructor (constructor code = bad)
     function BugListComponent(bugService) {
         this.bugService = bugService;
+        // get a collection (array) of bugs: 
+        this.bugs = [];
     }
     // must implement ngoninit or getAddedBugs will not run: 
     BugListComponent.prototype.ngOnInit = function () {
         this.getAddedBugs();
     };
     BugListComponent.prototype.getAddedBugs = function () {
+        var _this = this;
         this.bugService.getAddedBugs()
             .subscribe(function (bug) {
-            console.log(bug);
+            // push the bug onto the end of the array:
+            _this.bugs.push(bug);
+            // display in console: 
+            console.log(_this.bugs);
         }, function (err) {
             console.error("Unable to get added bug -", err);
         });

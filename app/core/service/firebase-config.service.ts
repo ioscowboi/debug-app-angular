@@ -15,17 +15,22 @@ import { FIREBASE_CONFIG } from '../constant/constants';
 
 export class FirebaseConfigService {
     // create database property to reference the db:
-    database: firebase.database.Database;
+    //     "_" underscore denotes that this will be a private property
+    private _database: firebase.database.Database;
 
     constructor() {
         this.configureApp();
         this.configureDatabase();
+    }
+    // create getter to control access to data from the firebase db:
+    public get database(){
+        return this._database;
     }
     configureApp() {
         // initialize firebase config:
         firebase.initializeApp(FIREBASE_CONFIG);
     }
     configureDatabase(){
-        this.database = firebase.database();
+        this._database = firebase.database();
     }
 }
