@@ -13,6 +13,8 @@ var core_1 = require("@angular/core");
 var shared_module_1 = require('../shared/shared.module');
 // once created, import the bugroutingmodule for use in NgModule:
 var bug_routing_module_1 = require('./bug-routing.module');
+// for building dynamic forms:
+var forms_1 = require('@angular/forms');
 //  Component:
 var bug_list_component_1 = require('./bug-list/bug-list.component');
 var bug_detail_component_1 = require('./bug-detail/bug-detail.component');
@@ -30,7 +32,8 @@ var BugModule = (function () {
             // imports that we want NgModule to have access to:
             imports: [
                 shared_module_1.SharedModule,
-                bug_routing_module_1.BugRoutingModule
+                bug_routing_module_1.BugRoutingModule,
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
                 bug_list_component_1.BugListComponent,

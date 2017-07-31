@@ -23,7 +23,8 @@ import { BugService } from './service/bug.service';
     // imports that we want NgModule to have access to:
     imports: [ 
         SharedModule,
-        BugRoutingModule
+        BugRoutingModule,
+        ReactiveFormsModule
      ],
     declarations: [
         BugListComponent,

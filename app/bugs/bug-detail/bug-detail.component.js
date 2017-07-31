@@ -17,15 +17,20 @@ var BugDetailComponent = (function () {
         this.modalId = "bugModal";
     }
     BugDetailComponent.prototype.ngOnInit = function () {
+        this.configureForm();
     };
     // establish form properties then bind the reactive form to the html form fields:
-    BugDetailComponent.prototype.configureform = function () {
+    BugDetailComponent.prototype.configureForm = function () {
+        // gives more control over form fields:
         this.bugForm = new forms_1.FormGroup({
             title: new forms_1.FormControl(),
-            status: new forms_1.FormControl(),
-            severity: new forms_1.FormControl(),
+            status: new forms_1.FormControl(1),
+            severity: new forms_1.FormControl(1),
             description: new forms_1.FormControl()
         });
+    };
+    BugDetailComponent.prototype.submitForm = function () {
+        console.log(this.bugForm);
     };
     BugDetailComponent = __decorate([
         core_1.Component({

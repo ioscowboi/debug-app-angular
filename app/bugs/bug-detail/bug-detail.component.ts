@@ -17,15 +17,19 @@ export class BugDetailComponent implements OnInit{
     private bugForm: FormGroup;
 
     ngOnInit(){
-
+        this.configureForm();
     }
     // establish form properties then bind the reactive form to the html form fields:
-    configureform(){
+    configureForm(){
+        // gives more control over form fields:
         this.bugForm = new FormGroup({
             title: new FormControl(),
-            status: new FormControl(),
-            severity: new FormControl(),
+            status: new FormControl(1),
+            severity: new FormControl(1),
             description: new FormControl()
         });
+    }
+    submitForm(){
+        console.log(this.bugForm);
     }
 }
