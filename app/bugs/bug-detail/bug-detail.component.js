@@ -13,7 +13,9 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var forbidden_string_validator_1 = require('../../shared/validation/forbidden-string.validator');
 var BugDetailComponent = (function () {
-    function BugDetailComponent() {
+    // dependency injection needed for FormBuilder to work smoothly: 
+    function BugDetailComponent(formB) {
+        this.formB = formB;
         // create property for html component to use
         this.modalId = "bugModal";
     }
@@ -22,15 +24,23 @@ var BugDetailComponent = (function () {
     };
     // establish form properties then bind the reactive form to the html form fields:
     BugDetailComponent.prototype.configureForm = function () {
-        // gives more control over form fields:
-        this.bugForm = new forms_1.FormGroup({
-            // arguments[1] are form validation :
-            //     use '[]' for multiple validation arguments:
-            //     regular expressions go in between '/ /'
-            title: new forms_1.FormControl(null, [forms_1.Validators.required, forbidden_string_validator_1.forbiddenStringValidator(/puppy/i)]),
-            status: new forms_1.FormControl(1, forms_1.Validators.required),
-            severity: new forms_1.FormControl(1, forms_1.Validators.required),
-            description: new forms_1.FormControl(null, forms_1.Validators.required)
+        // // gives more control over form fields:
+        // this.bugForm = new FormGroup({
+        //     // arguments[1] are form validation :
+        //     //     use '[]' for multiple validation arguments:
+        //     //     regular expressions go in between '/ /'
+        //     title: new FormControl(null, [Validators.required, forbiddenStringValidator(/puppy/i)]),
+        //     status: new FormControl(1, Validators.required),
+        //     severity: new FormControl(1, Validators.required),
+        //     description: new FormControl(null, Validators.required)
+        // });
+        // use one or the other ^ v  
+        //     below uses formBuilder to handle validation: 
+        this.bugForm = this.formB.group({
+            title: [null, [forms_1.Validators.required, forbidden_string_validator_1.forbiddenStringValidator(/puppy/i)]],
+            status: [1, forms_1.Validators.required],
+            severity: [1, forms_1.Validators.required],
+            description: [null, forms_1.Validators.required]
         });
     };
     BugDetailComponent.prototype.submitForm = function () {
@@ -43,7 +53,7 @@ var BugDetailComponent = (function () {
             templateUrl: 'bug-detail.component.html',
             styleUrls: ['bug-detail.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], BugDetailComponent);
     return BugDetailComponent;
 }());
