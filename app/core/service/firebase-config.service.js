@@ -11,14 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Set up service:
 var core_1 = require('@angular/core');
 // use firebase sdk from firebase module:
+//     there are no individual components to import, so just import everything:
 var firebase = require('firebase');
 // access the database (firebase):
+//     once required, you can use db methods provided by firebase:
+// which db sections do you want to use? Only reference the path you need data from: 
 require('firebase/database');
 // pull in the constants you'll need:
 var constants_1 = require('../constant/constants');
 var FirebaseConfigService = (function () {
     function FirebaseConfigService() {
         this.configureApp();
+        this.configureDatabase();
     }
     FirebaseConfigService.prototype.configureApp = function () {
         // initialize firebase config:

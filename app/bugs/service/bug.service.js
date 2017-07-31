@@ -9,12 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Observable_1 = require('rxjs/Observable');
 var firebase_config_service_1 = require('../../core/service/firebase-config.service');
 var BugService = (function () {
+    // or " private bugsDbRef = this.fire.database.ref.child('bugs'); " would work the same as above ^^
     // dependency injection:
     function BugService(fire) {
         this.fire = fire;
+        // create a reference to the target endpoint bugs database reference:
+        this.bugsDbRef = this.fire.database.ref('/bugs');
     }
+    // create method to listen to child added events: 
+    BugService.prototype.getAddedBugs = function () {
+        var _this = this;
+        return Observable_1.Observable.create(function (obs) {
+            // event listener (use lowest data endpoint possible):
+            //     use 'on()' to continuously listen to an event:
+            //         also note on() will fire for every one of the specified objects (in this case child_added)
+            _this.bugsDbRef.on('child_added', function (bug) {
+                // observe:
+                // obs is created here, this extracts the values and converts into a javascript object:
+                obs.next(bug.val());
+            }, 
+            // let the observable throw the error:
+            function (err) {
+                obs.throw(err);
+            });
+        });
+    };
     BugService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [firebase_config_service_1.FirebaseConfigService])

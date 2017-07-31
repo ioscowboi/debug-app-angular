@@ -6,6 +6,10 @@ import { BugRoutingModule } from './bug-routing.module';
 //  Component:
 import { BugListComponent } from './bug-list/bug-list.component';
 
+
+// Service:
+import { BugService } from './service/bug.service';
+
 // use CommonModule when you need access to NgIf/NgFor:
 // however we will import it a different way so it remains commented out:
 // import { CommonModule } from '@angular/common';
@@ -23,6 +27,8 @@ import { BugListComponent } from './bug-list/bug-list.component';
     // passthrough: allows you to pull in other modules to external modules:
     exports: [ ],
     // services:
-    providers: [ ]
+    providers: [
+        BugService
+     ]
 })
 export class BugModule { }
