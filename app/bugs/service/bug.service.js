@@ -41,7 +41,7 @@ var BugService = (function () {
             });
         });
     };
-    //  ADD NEW BUGS TO THE LIST ASYNCHRONOUSLY:
+    //  ADD NEW BUGS TO THE DB LIST ASYNCHRONOUSLY:
     BugService.prototype.addBug = function (bug) {
         var newBugRef = this.bugsDbRef.push();
         newBugRef.set({
@@ -52,9 +52,8 @@ var BugService = (function () {
             description: bug.description,
             createdBy: 'Admin',
             createdDate: Date.now()
-        }, 
-        // error handling: 
-        function (err) { return console.error("Unable to add bug to Firebase - ", err); });
+        })
+            .catch(function (err) { return console.error("Unable to add bug to Firebase - ", err); });
     };
     BugService = __decorate([
         core_1.Injectable(), 
