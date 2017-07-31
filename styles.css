@@ -12,3 +12,28 @@ h1{
     background-color: #aca286;
     border-color: #aca286;
 }
+.btn-xl {
+    padding: 1.2rem 3rem;
+}
+.btn-primary{
+    background-color: #34434B;
+    border-color: #34434B;
+}
+.btn-primary:hover, .btn-primary:disabled{
+    background-color: #3f515A;
+    border-color: #3f515A;
+}
+.form-control{
+    border-radius: 0;
+    font-weight: lighter;
+}
+select{
+    text-transform: uppercase;
+    border: none !important;
+    height: 3.5rem !important;
+    -webkit-appearance: none;
+}
+textarea{
+    background-color: #f7f7f7 !important;
+    resize: none;
+}

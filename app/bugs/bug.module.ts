@@ -1,8 +1,11 @@
 // Modules:
-import { NgModule  } from "@angular/core";
-import { SharedModule } from '../shared/shared.module';
-// once created, import the bugroutingmodule for use in NgModule:
-import { BugRoutingModule } from './bug-routing.module';
+    import { NgModule  } from "@angular/core";
+    import { SharedModule } from '../shared/shared.module';
+    // once created, import the bugroutingmodule for use in NgModule:
+    import { BugRoutingModule } from './bug-routing.module';
+    // for building dynamic forms:
+    import { ReactiveFormsModule } from '@angular/forms'; 
+
 //  Component:
 import { BugListComponent } from './bug-list/bug-list.component';
 

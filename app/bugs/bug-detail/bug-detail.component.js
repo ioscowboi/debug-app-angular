@@ -10,11 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var BugDetailComponent = (function () {
     function BugDetailComponent() {
         // create property for html component to use
         this.modalId = "bugModal";
     }
+    BugDetailComponent.prototype.ngOnInit = function () {
+    };
+    // establish form properties then bind the reactive form to the html form fields:
+    BugDetailComponent.prototype.configureform = function () {
+        this.bugForm = new forms_1.FormGroup({
+            title: new forms_1.FormControl(),
+            status: new forms_1.FormControl(),
+            severity: new forms_1.FormControl(),
+            description: new forms_1.FormControl()
+        });
+    };
     BugDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
