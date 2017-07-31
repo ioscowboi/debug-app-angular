@@ -23,6 +23,7 @@ export class BugListComponent implements OnInit {
     }
     getAddedBugs() {
         this.bugService.getAddedBugs()
+            //  need so subscribe in order for the asynchronous workflow to run:
             .subscribe(bug => {
                 // push the bug onto the end of the array:
                 this.bugs.push(bug);
