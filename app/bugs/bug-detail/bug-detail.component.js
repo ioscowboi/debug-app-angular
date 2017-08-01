@@ -60,6 +60,13 @@ var BugDetailComponent = (function () {
         this.currentBug.severity = this.bugForm.value["severity"];
         this.currentBug.description = this.bugForm.value["description"];
         this.bugService.addBug(this.currentBug);
+        // clear the form:
+        this.freshForm();
+    };
+    // need to clear the form after submission: 
+    BugDetailComponent.prototype.freshForm = function () {
+        // pass in the properties that have an initial value:
+        this.bugForm.reset({ status: 1, severity: 1 });
     };
     __decorate([
         core_1.Input(), 
