@@ -16,11 +16,12 @@ var bug_service_1 = require('../service/bug.service');
 var bug_1 = require('../model/bug');
 var BugDetailComponent = (function () {
     // dependency injection needed for FormBuilder to work smoothly: 
-    function BugDetailComponent(formB, BugService) {
+    function BugDetailComponent(formB, bugService) {
         this.formB = formB;
-        this.BugService = BugService;
+        this.bugService = bugService;
         // create property for html component to use
         this.modalId = "bugModal";
+        // initialize input values (temporary storage property):
         this.currentBug = new bug_1.Bug(null, null, null, null, null, null, null, null, null);
     }
     BugDetailComponent.prototype.ngOnInit = function () {
@@ -52,12 +53,13 @@ var BugDetailComponent = (function () {
         this.addBug();
     };
     // addBug service passes data for submission to the Firebase DB:
+    //     set properties and pass to the BugService object for processing:
     BugDetailComponent.prototype.addBug = function () {
         this.currentBug.title = this.bugForm.value["title"];
         this.currentBug.status = this.bugForm.value["status"];
         this.currentBug.severity = this.bugForm.value["severity"];
         this.currentBug.description = this.bugForm.value["description"];
-        this.BugService.addBug(this.currentBug);
+        this.bugService.addBug(this.currentBug);
     };
     __decorate([
         core_1.Input(), 

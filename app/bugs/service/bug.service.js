@@ -42,6 +42,7 @@ var BugService = (function () {
         });
     };
     //  ADD NEW BUGS TO THE DB LIST ASYNCHRONOUSLY:
+    //     type: PROMISE::
     BugService.prototype.addBug = function (bug) {
         var newBugRef = this.bugsDbRef.push();
         newBugRef.set({

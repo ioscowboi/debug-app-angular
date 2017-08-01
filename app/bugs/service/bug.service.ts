@@ -35,6 +35,7 @@ export class BugService{
         });
     }
     //  ADD NEW BUGS TO THE DB LIST ASYNCHRONOUSLY:
+    //     type: PROMISE::
     addBug(bug: Bug){
         const newBugRef = this.bugsDbRef.push();
         newBugRef.set({

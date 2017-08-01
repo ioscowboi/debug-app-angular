@@ -18,11 +18,11 @@ export class BugDetailComponent implements OnInit{
     private modalId = "bugModal";
     // 
     private bugForm: FormGroup;
-
+    // initialize input values (temporary storage property):
     @Input() currentBug = new Bug (null, null, null, null, null, null, null, null, null);
 
     // dependency injection needed for FormBuilder to work smoothly: 
-    constructor(private formB: FormBuilder, private BugService: BugService) { }
+    constructor(private formB: FormBuilder, private bugService: BugService) { }
     ngOnInit(){
         this.configureForm();
     }
@@ -52,11 +52,12 @@ export class BugDetailComponent implements OnInit{
         this.addBug();
     }
     // addBug service passes data for submission to the Firebase DB:
+    //     set properties and pass to the BugService object for processing:
     addBug() {
         this.currentBug.title = this.bugForm.value["title"];
         this.currentBug.status = this.bugForm.value["status"];
         this.currentBug.severity = this.bugForm.value["severity"];
         this.currentBug.description = this.bugForm.value["description"];
-        this.BugService.addBug(this.currentBug);
+        this.bugService.addBug(this.currentBug);
     }
 }
