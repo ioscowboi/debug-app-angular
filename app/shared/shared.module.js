@@ -11,6 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // a shared module is a feature module but used a little bit differently
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
+// pull in custom pipe: 
+var status_pipe_1 = require('./pipe/status.pipe');
+var severity_pipe_1 = require('./pipe/severity.pipe');
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -19,9 +22,16 @@ var SharedModule = (function () {
             // any imports are pulled from another app area and can be used by the NgModule:
             imports: [common_1.CommonModule],
             // any directives, or pipings must be declared if you want other modules to have access to them
-            declarations: [],
+            declarations: [
+                status_pipe_1.StatusPipe,
+                severity_pipe_1.SeverityPipe
+            ],
             // using modules, components etc available to other modules:
-            exports: [common_1.CommonModule]
+            exports: [
+                common_1.CommonModule,
+                status_pipe_1.StatusPipe,
+                severity_pipe_1.SeverityPipe
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], SharedModule);

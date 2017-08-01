@@ -29,11 +29,13 @@
                 <!--        pass in bug object to pass in the default values to configureForm (bug is an optional in configureForm):  -->
                 <tr *ngFor="let bug of bugs" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal" (click)="bugDetail.configureForm(bug)">
                     <td>{{ bug.title }}</td>
-                    <td>{{ bug.status }}</td>
-                    <td>{{ bug.severity }}</td>
+                    <!-- use custom pipe to display the string interpretation of the numerical value (enum)  -->
+                    <td>{{ bug.status | status }}</td>
+                    <td>{{ bug.severity | severity }}</td>
                     <td>{{ bug.description }}</td>
                     <td>{{ bug.createdBy }}</td>
-                    <td>{{ bug.createdDate }}</td>
+                    <!-- use pre-built pipe to display date  -->
+                    <td>{{ bug.createdDate | date }}</td>
                 </tr>
             </tbody>
         </table>
