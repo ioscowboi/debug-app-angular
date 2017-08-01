@@ -36,6 +36,25 @@ export class BugService{
             });
         });
     }
+    // update page when existing nodes are updated (this should work whether the change was done
+        // on users machine or someone elses: 
+    changedListener(): Observable<any> {
+        // observables must have a return object/value
+        return Observable.create(obs => {
+            // listen to when an existing element on the screen is changed, update the appropriate reference:
+            this.bugsDbRef.on('child_changed', bug => {
+                // change the bug.val() to a js object: 
+                const updatedBug = bug.val() as Bug;
+                // set the id locally:
+                updatedBug.id = bug.key;
+                // provide via the observable: 
+                obs.next(updatedBug);
+            },
+            err => {
+                obs.throw(err);
+            });
+        });
+    }
     //  ADD NEW BUGS TO THE DB LIST ASYNCHRONOUSLY:
     //     type: PROMISE::
     addBug(bug: Bug){

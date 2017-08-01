@@ -21,6 +21,7 @@ var BugListComponent = (function () {
     // must implement ngoninit or getAddedBugs will not run: 
     BugListComponent.prototype.ngOnInit = function () {
         this.getAddedBugs();
+        this.getUpdatedBugs();
     };
     BugListComponent.prototype.getAddedBugs = function () {
         var _this = this;
@@ -28,10 +29,24 @@ var BugListComponent = (function () {
             .subscribe(function (bug) {
             // push the bug onto the end of the array:
             _this.bugs.push(bug);
-            // display in console: 
-            console.log(_this.bugs);
         }, function (err) {
             console.error("Unable to get added bug -", err);
+        });
+    };
+    // subscribe to event listener:
+    BugListComponent.prototype.getUpdatedBugs = function () {
+        var _this = this;
+        this.bugService.changedListener()
+            .subscribe(function (updatedBug) {
+            // find the existing bug in the array and replace it with the update version: 
+            //  aha! use the id to track:
+            //         map: iterates through and gets every element as an array
+            //         indexOf: find a match to whatever is passed in
+            var bugIndex = _this.bugs.map(function (index) { return index.id; }).indexOf(updatedBug['id']);
+            // replace the bugIndex item with the new info: 
+            _this.bugs[bugIndex] = updatedBug;
+        }, function (err) {
+            console.error("Unable to get updated bug - ", err);
         });
     };
     BugListComponent = __decorate([
