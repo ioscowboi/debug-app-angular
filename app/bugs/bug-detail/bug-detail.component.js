@@ -22,13 +22,19 @@ var BugDetailComponent = (function () {
         // create property for html component to use
         this.modalId = "bugModal";
         // initialize input values (temporary storage property):
-        this.currentBug = new bug_1.Bug(null, null, null, null, null, null, null, null, null);
+        this.currentBug = new bug_1.Bug(null, null, 1, 1, null, null, null, null, null);
     }
     BugDetailComponent.prototype.ngOnInit = function () {
         this.configureForm();
     };
     // establish form properties then bind the reactive form to the html form fields:
-    BugDetailComponent.prototype.configureForm = function () {
+    //     ok to pass in Bug to reset the form (optional):
+    BugDetailComponent.prototype.configureForm = function (bug) {
+        // if bug is passed in, use the 'bug' settings: 
+        //     note: passing in 'bug' allows us to update existing bugs, not create a new one:
+        if (bug) {
+            this.currentBug = bug;
+        }
         // // gives more control over form fields:
         // this.bugForm = new FormGroup({
         //     // arguments[1] are form validation :
@@ -42,10 +48,10 @@ var BugDetailComponent = (function () {
         // use one or the other ^ v  
         //     below uses formBuilder to handle validation: 
         this.bugForm = this.formB.group({
-            title: [null, [forms_1.Validators.required, forbidden_string_validator_1.forbiddenStringValidator(/puppy/i)]],
-            status: [1, forms_1.Validators.required],
-            severity: [1, forms_1.Validators.required],
-            description: [null, forms_1.Validators.required]
+            title: [this.currentBug.title, [forms_1.Validators.required, forbidden_string_validator_1.forbiddenStringValidator(/puppy/i)]],
+            status: [this.currentBug.status, forms_1.Validators.required],
+            severity: [this.currentBug.severity, forms_1.Validators.required],
+            description: [this.currentBug.description, forms_1.Validators.required]
         });
     };
     BugDetailComponent.prototype.submitForm = function () {
@@ -67,6 +73,11 @@ var BugDetailComponent = (function () {
     BugDetailComponent.prototype.freshForm = function () {
         // pass in the properties that have an initial value:
         this.bugForm.reset({ status: 1, severity: 1 });
+        this.cleanBug();
+    };
+    // go back to initial state! :
+    BugDetailComponent.prototype.cleanBug = function () {
+        this.currentBug = new bug_1.Bug(null, null, 1, 1, null, null, null, null, null);
     };
     __decorate([
         core_1.Input(), 

@@ -25,7 +25,9 @@
                 <!--create a row for each bug:  -->
                 <!-- get access to all properties and methods using attr.xxxxxxx -->
                 <!--        attribute binding: -->
-                <tr *ngFor="let bug of bugs" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal">
+                <!--        run configureForm() on bugDetail reference variable every time the submit button is clicked: -->
+                <!--        pass in bug object to pass in the default values to configureForm (bug is an optional in configureForm):  -->
+                <tr *ngFor="let bug of bugs" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal" (click)="bugDetail.configureForm(bug)">
                     <td>{{ bug.title }}</td>
                     <td>{{ bug.status }}</td>
                     <td>{{ bug.severity }}</td>

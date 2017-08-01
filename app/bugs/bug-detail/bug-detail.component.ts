@@ -19,7 +19,7 @@ export class BugDetailComponent implements OnInit{
     // 
     private bugForm: FormGroup;
     // initialize input values (temporary storage property):
-    @Input() currentBug = new Bug (null, null, null, null, null, null, null, null, null);
+    @Input() currentBug = new Bug (null, null, 1, 1, null, null, null, null, null);
 
     // dependency injection needed for FormBuilder to work smoothly: 
     constructor(private formB: FormBuilder, private bugService: BugService) { }
@@ -27,7 +27,13 @@ export class BugDetailComponent implements OnInit{
         this.configureForm();
     }
     // establish form properties then bind the reactive form to the html form fields:
-    configureForm(){
+    //     ok to pass in Bug to reset the form (optional):
+    configureForm(bug?: Bug){
+        // if bug is passed in, use the 'bug' settings: 
+        //     note: passing in 'bug' allows us to update existing bugs, not create a new one:
+        if (bug) {
+            this.currentBug = bug;
+        }
         // // gives more control over form fields:
         // this.bugForm = new FormGroup({
         //     // arguments[1] are form validation :
@@ -41,10 +47,10 @@ export class BugDetailComponent implements OnInit{
         // use one or the other ^ v  
         //     below uses formBuilder to handle validation: 
         this.bugForm = this.formB.group({
-            title: [null, [Validators.required, forbiddenStringValidator(/puppy/i)]],
-            status: [1, Validators.required],
-            severity: [1, Validators.required],
-            description: [null, Validators.required]
+            title: [this.currentBug.title, [Validators.required, forbiddenStringValidator(/puppy/i)]],
+            status: [this.currentBug.status, Validators.required],
+            severity: [this.currentBug.severity, Validators.required],
+            description: [this.currentBug.description, Validators.required]
         });
     }
     submitForm(){
@@ -66,5 +72,10 @@ export class BugDetailComponent implements OnInit{
     freshForm(){
         // pass in the properties that have an initial value:
         this.bugForm.reset({ status: 1, severity: 1 });
+        this.cleanBug();
+    }
+    // go back to initial state! :
+    cleanBug() {
+        this.currentBug = new Bug (null, null, 1, 1, null, null, null, null, null);
     }
 }
