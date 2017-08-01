@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { forbiddenStringValidator } from '../../shared/validation/forbidden-string.validator';
 import { BugService } from '../service/bug.service';
 import { Bug } from '../model/bug'; 
+import { STATUS, SEVERITY } from '../../shared/constant/constants';
 
 @Component({
     moduleId: module.id,
@@ -18,12 +19,23 @@ export class BugDetailComponent implements OnInit{
     private modalId = "bugModal";
     // 
     private bugForm: FormGroup;
+    // create local property for statuses and severities: 
+    private statuses = STATUS;
+    private severities = SEVERITY;
+    // store enum data for looping: 
+    private statusArr: string[] = [];
+    private severityArr: string[] = [];
+
     // initialize input values (temporary storage property):
-    @Input() currentBug = new Bug (null, null, 1, 1, null, null, null, null, null);
+    @Input() currentBug = new Bug (null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
 
     // dependency injection needed for FormBuilder to work smoothly: 
     constructor(private formB: FormBuilder, private bugService: BugService) { }
     ngOnInit(){
+        // because of how ngFor works, it creates a duplicate of each item in the enum
+        //     get the keys of the status array:
+        this.statusArr = Object.keys(this.statuses).filter(Number);
+        this.severityArr = Object.keys(this.severities).filter(Number);
         this.configureForm();
     }
     // establish form properties then bind the reactive form to the html form fields:
@@ -75,8 +87,6 @@ export class BugDetailComponent implements OnInit{
         } else {
             this.addBug();
         }
-        // clear the form:
-        this.freshForm();
     }
     // addBug service passes data for submission to the Firebase DB:
     //     set properties and pass to the BugService object for processing:
@@ -90,11 +100,11 @@ export class BugDetailComponent implements OnInit{
     // need to clear the form after submission: 
     freshForm(){
         // pass in the properties that have an initial value:
-        this.bugForm.reset({ status: 1, severity: 1 });
+        this.bugForm.reset({ status: this.statuses.Logged, severity: this.severities.Severe });
         this.cleanBug();
     }
     // go back to initial state! :
     cleanBug() {
-        this.currentBug = new Bug (null, null, 1, 1, null, null, null, null, null);
+        this.currentBug = new Bug (null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
     }
 }

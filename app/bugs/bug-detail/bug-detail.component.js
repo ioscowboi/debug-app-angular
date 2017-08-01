@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var forbidden_string_validator_1 = require('../../shared/validation/forbidden-string.validator');
 var bug_service_1 = require('../service/bug.service');
 var bug_1 = require('../model/bug');
+var constants_1 = require('../../shared/constant/constants');
 var BugDetailComponent = (function () {
     // dependency injection needed for FormBuilder to work smoothly: 
     function BugDetailComponent(formB, bugService) {
@@ -21,10 +22,20 @@ var BugDetailComponent = (function () {
         this.bugService = bugService;
         // create property for html component to use
         this.modalId = "bugModal";
+        // create local property for statuses and severities: 
+        this.statuses = constants_1.STATUS;
+        this.severities = constants_1.SEVERITY;
+        // store enum data for looping: 
+        this.statusArr = [];
+        this.severityArr = [];
         // initialize input values (temporary storage property):
-        this.currentBug = new bug_1.Bug(null, null, 1, 1, null, null, null, null, null);
+        this.currentBug = new bug_1.Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
     }
     BugDetailComponent.prototype.ngOnInit = function () {
+        // because of how ngFor works, it creates a duplicate of each item in the enum
+        //     get the keys of the status array:
+        this.statusArr = Object.keys(this.statuses).filter(Number);
+        this.severityArr = Object.keys(this.severities).filter(Number);
         this.configureForm();
     };
     // establish form properties then bind the reactive form to the html form fields:
@@ -67,8 +78,6 @@ var BugDetailComponent = (function () {
         else {
             this.addBug();
         }
-        // clear the form:
-        this.freshForm();
     };
     // addBug service passes data for submission to the Firebase DB:
     //     set properties and pass to the BugService object for processing:
@@ -82,12 +91,12 @@ var BugDetailComponent = (function () {
     // need to clear the form after submission: 
     BugDetailComponent.prototype.freshForm = function () {
         // pass in the properties that have an initial value:
-        this.bugForm.reset({ status: 1, severity: 1 });
+        this.bugForm.reset({ status: this.statuses.Logged, severity: this.severities.Severe });
         this.cleanBug();
     };
     // go back to initial state! :
     BugDetailComponent.prototype.cleanBug = function () {
-        this.currentBug = new bug_1.Bug(null, null, 1, 1, null, null, null, null, null);
+        this.currentBug = new bug_1.Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
     };
     __decorate([
         core_1.Input(), 
