@@ -79,6 +79,7 @@ var BugDetailComponent = (function () {
             this.addBug();
         }
     };
+    // Crud (C) method: 
     // addBug service passes data for submission to the Firebase DB:
     //     set properties and pass to the BugService object for processing:
     BugDetailComponent.prototype.addBug = function () {
@@ -87,6 +88,15 @@ var BugDetailComponent = (function () {
     // Crud (U) method:
     BugDetailComponent.prototype.updateBug = function () {
         this.bugService.updateBug(this.currentBug);
+    };
+    // Crud (D) method: 
+    BugDetailComponent.prototype.deleteBug = function () {
+        var deleteForSure = confirm("Are you sure? (THIS CANNOT BE UNDONE)");
+        if (deleteForSure == true) {
+            this.bugService.deleteBug(this.currentBug);
+            this.freshForm();
+        }
+        ;
     };
     // need to clear the form after submission: 
     BugDetailComponent.prototype.freshForm = function () {

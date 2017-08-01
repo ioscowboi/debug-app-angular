@@ -4,11 +4,11 @@ h1{
 .btn{
     border-radius: 0;
 }
-.btn-success, .btn-success:active, .btn-success:focus, .btn-success:active:focus{
+.btn-success:not(.btn-danger), .btn-success:not(.btn-danger):active, .btn-success:not(.btn-danger):focus, .btn-success:not(.btn-danger):active:focus{
     background-color: #a09474;
     border-color: #a09474;
 }
-.btn-success:hover, .btn-success:disabled, .btn-success:disabled:hover{
+.btn-success:not(.btn-danger):hover, .btn-success:not(.btn-danger):disabled, .btn-success:not(.btn-danger):disabled:hover{
     background-color: #aca286;
     border-color: #aca286;
 }

@@ -79,4 +79,11 @@ export class BugService{
         bug.updatedDate = Date.now(); 
         currentBugRef.update(bug);
     }
+    deleteBug(bug: Bug){
+        // remove the location of the endpoint in firebase:
+        const deletableBugRef = this.bugsDbRef.child(bug.id);
+        bug.id = null;
+        deletableBugRef.remove();
+    }
+
 }

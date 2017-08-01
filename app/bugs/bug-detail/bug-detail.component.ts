@@ -88,6 +88,7 @@ export class BugDetailComponent implements OnInit{
             this.addBug();
         }
     }
+    // Crud (C) method: 
     // addBug service passes data for submission to the Firebase DB:
     //     set properties and pass to the BugService object for processing:
     addBug() {
@@ -96,6 +97,14 @@ export class BugDetailComponent implements OnInit{
     // Crud (U) method:
     updateBug() {
         this.bugService.updateBug(this.currentBug);
+    }
+    // Crud (D) method: 
+    deleteBug(){
+        var deleteForSure = confirm("Are you sure? (THIS CANNOT BE UNDONE)");
+        if (deleteForSure == true) {
+            this.bugService.deleteBug(this.currentBug);
+            this.freshForm();
+        };
     }
     // need to clear the form after submission: 
     freshForm(){

@@ -87,6 +87,12 @@ var BugService = (function () {
         bug.updatedDate = Date.now();
         currentBugRef.update(bug);
     };
+    BugService.prototype.deleteBug = function (bug) {
+        // remove the location of the endpoint in firebase:
+        var deletableBugRef = this.bugsDbRef.child(bug.id);
+        bug.id = null;
+        deletableBugRef.remove();
+    };
     BugService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [firebase_config_service_1.FirebaseConfigService])
