@@ -9,6 +9,6 @@ export class Bug{
         public createdDate: number,
         //  note the question mark: this makes the var optional
         public updatedBy?: string,
-        public updatedDate?: string
+        public updatedDate?: number
     ){}
 }

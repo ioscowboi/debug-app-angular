@@ -32,7 +32,19 @@ export class BugDetailComponent implements OnInit{
         // if bug is passed in, use the 'bug' settings: 
         //     note: passing in 'bug' allows us to update existing bugs, not create a new one:
         if (bug) {
-            this.currentBug = bug;
+            // create a new instance of Bug so that there is no link to the original:
+            //     this is due to how coupled the local copy will be, we want to uncouple, then update:
+            this.currentBug = new Bug(
+                bug.id,
+                bug.title,
+                bug.status,
+                bug.severity,
+                bug.description,
+                bug.createdBy,
+                bug.createdDate,
+                bug.updatedBy,
+                bug.updatedDate
+            );
         }
         // // gives more control over form fields:
         // this.bugForm = new FormGroup({
@@ -54,19 +66,26 @@ export class BugDetailComponent implements OnInit{
         });
     }
     submitForm(){
-        console.log(this.bugForm);
-        this.addBug();
-    }
-    // addBug service passes data for submission to the Firebase DB:
-    //     set properties and pass to the BugService object for processing:
-    addBug() {
         this.currentBug.title = this.bugForm.value["title"];
         this.currentBug.status = this.bugForm.value["status"];
         this.currentBug.severity = this.bugForm.value["severity"];
         this.currentBug.description = this.bugForm.value["description"];
-        this.bugService.addBug(this.currentBug);
+        if (this.currentBug.id) {
+            this.updateBug();
+        } else {
+            this.addBug();
+        }
         // clear the form:
         this.freshForm();
+    }
+    // addBug service passes data for submission to the Firebase DB:
+    //     set properties and pass to the BugService object for processing:
+    addBug() {
+        this.bugService.addBug(this.currentBug);
+    }
+    // Crud (U) method:
+    updateBug() {
+        this.bugService.updateBug(this.currentBug);
     }
     // need to clear the form after submission: 
     freshForm(){

@@ -30,6 +30,9 @@ var BugService = (function () {
                 // store the js object
                 // use as to cast this as our js object
                 var newBug = bug.val();
+                // store the newBug id as a key, to use as endpoint on where to store updates to existing db nodes
+                //     in firebase: 
+                newBug.id = bug.key;
                 // observe:
                 // obs is created here, this extracts the values and converts into a javascript object:
                 //     every time this fires, a newBug bug object will be passed in:
@@ -55,6 +58,15 @@ var BugService = (function () {
             createdDate: Date.now()
         })
             .catch(function (err) { return console.error("Unable to add bug to Firebase - ", err); });
+    };
+    // pass in the existing record: 
+    BugService.prototype.updateBug = function (bug) {
+        // store the location of the endpoint in firebase:
+        var currentBugRef = this.bugsDbRef.child(bug.id);
+        bug.id = null;
+        bug.updatedBy = "Tom Tickle";
+        bug.updatedDate = Date.now();
+        currentBugRef.update(bug);
     };
     BugService = __decorate([
         core_1.Injectable(), 
