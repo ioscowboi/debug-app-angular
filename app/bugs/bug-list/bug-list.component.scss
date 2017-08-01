@@ -19,3 +19,8 @@ i{
     padding-right: .5rem;
 
 }
+tbody{
+    & > tr{
+        cursor: pointer;
+    }
+}

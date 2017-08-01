@@ -1,6 +1,6 @@
 // established for creating to modal window: 
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { forbiddenStringValidator } from '../../shared/validation/forbidden-string.validator';
 import { BugService } from '../service/bug.service';
@@ -27,7 +27,7 @@ export class BugDetailComponent implements OnInit{
     private severityArr: string[] = [];
 
     // initialize input values (temporary storage property):
-    @Input() currentBug = new Bug (null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
+    private currentBug = new Bug (null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
 
     // dependency injection needed for FormBuilder to work smoothly: 
     constructor(private formB: FormBuilder, private bugService: BugService) { }
@@ -63,10 +63,10 @@ export class BugDetailComponent implements OnInit{
         //     // arguments[1] are form validation :
         //     //     use '[]' for multiple validation arguments:
         //     //     regular expressions go in between '/ /'
-        //     title: new FormControl(null, [Validators.required, forbiddenStringValidator(/puppy/i)]),
-        //     status: new FormControl(1, Validators.required),
-        //     severity: new FormControl(1, Validators.required),
-        //     description: new FormControl(null, Validators.required)
+        //     title: new FormControl(this.currentBug.title, [Validators.required, forbiddenStringValidator(/puppy/i)]),
+        //     status: new FormControl(this.currentBug.status, Validators.required),
+        //     severity: new FormControl(this.currentBug.severity, Validators.required),
+        //     description: new FormControl(this.currentBug.description, Validators.required)
         // });
         // use one or the other ^ v  
         //     below uses formBuilder to handle validation: 

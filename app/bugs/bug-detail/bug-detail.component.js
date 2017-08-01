@@ -53,10 +53,10 @@ var BugDetailComponent = (function () {
         //     // arguments[1] are form validation :
         //     //     use '[]' for multiple validation arguments:
         //     //     regular expressions go in between '/ /'
-        //     title: new FormControl(null, [Validators.required, forbiddenStringValidator(/puppy/i)]),
-        //     status: new FormControl(1, Validators.required),
-        //     severity: new FormControl(1, Validators.required),
-        //     description: new FormControl(null, Validators.required)
+        //     title: new FormControl(this.currentBug.title, [Validators.required, forbiddenStringValidator(/puppy/i)]),
+        //     status: new FormControl(this.currentBug.status, Validators.required),
+        //     severity: new FormControl(this.currentBug.severity, Validators.required),
+        //     description: new FormControl(this.currentBug.description, Validators.required)
         // });
         // use one or the other ^ v  
         //     below uses formBuilder to handle validation: 
@@ -98,10 +98,6 @@ var BugDetailComponent = (function () {
     BugDetailComponent.prototype.cleanBug = function () {
         this.currentBug = new bug_1.Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], BugDetailComponent.prototype, "currentBug", void 0);
     BugDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

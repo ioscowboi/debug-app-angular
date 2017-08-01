@@ -38,4 +38,7 @@ textarea.ng-invalid.ng-dirty {
   padding-left: 5px;
   transition: border-width 0.2s ease; }
 
+#status-dropdown {
+  text-align-last: center; }
+
 /*# sourceMappingURL=bug-detail.component.css.map */

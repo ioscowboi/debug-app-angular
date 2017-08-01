@@ -14,4 +14,7 @@ td {
 i {
   padding-right: .5rem; }
 
+tbody > tr {
+  cursor: pointer; }
+
 /*# sourceMappingURL=bug-list.component.css.map */
