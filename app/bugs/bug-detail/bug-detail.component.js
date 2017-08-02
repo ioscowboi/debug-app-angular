@@ -40,6 +40,7 @@ var BugDetailComponent = (function () {
     };
     // establish form properties then bind the reactive form to the html form fields:
     //     ok to pass in Bug to reset the form (optional):
+    //         :::::ELVIS OPERATOR ALERT !!!! :::::
     BugDetailComponent.prototype.configureForm = function (bug) {
         // if bug is passed in, use the 'bug' settings: 
         //     note: passing in 'bug' allows us to update existing bugs, not create a new one:
